@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\guias\\OneDrive\\Área de Trabalho\\Restaurante\\Restaurante\\Restaurante.csproj": {}
+    "C:\\Users\\Jaleanu\\Desktop\\dev\\Projetos.cs\\DSV\\Restaurante\\Restaurante.csproj": {}
   },
   "projects": {
-    "C:\\Users\\guias\\OneDrive\\Área de Trabalho\\Restaurante\\Restaurante\\Restaurante.csproj": {
+    "C:\\Users\\Jaleanu\\Desktop\\dev\\Projetos.cs\\DSV\\Restaurante\\Restaurante.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\guias\\OneDrive\\Área de Trabalho\\Restaurante\\Restaurante\\Restaurante.csproj",
+        "projectUniqueName": "C:\\Users\\Jaleanu\\Desktop\\dev\\Projetos.cs\\DSV\\Restaurante\\Restaurante.csproj",
         "projectName": "Restaurante",
-        "projectPath": "C:\\Users\\guias\\OneDrive\\Área de Trabalho\\Restaurante\\Restaurante\\Restaurante.csproj",
-        "packagesPath": "C:\\Users\\guias\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\guias\\OneDrive\\Área de Trabalho\\Restaurante\\Restaurante\\obj\\",
+        "projectPath": "C:\\Users\\Jaleanu\\Desktop\\dev\\Projetos.cs\\DSV\\Restaurante\\Restaurante.csproj",
+        "packagesPath": "C:\\Users\\Jaleanu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jaleanu\\Desktop\\dev\\Projetos.cs\\DSV\\Restaurante\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\guias\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Jaleanu\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -92,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
