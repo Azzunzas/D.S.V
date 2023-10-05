@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using Restaurante.Data;
+
 namespace Restaurante
 {
     public class Program
@@ -13,6 +16,7 @@ namespace Restaurante
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddDbContext<SistemaRestauranteDBContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 

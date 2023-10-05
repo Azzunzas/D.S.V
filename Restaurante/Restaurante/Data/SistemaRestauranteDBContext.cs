@@ -5,15 +5,18 @@ namespace Restaurante.Data
 {
     public class SistemaRestauranteDBContext : DbContext
     {
-        public SistemaRestauranteDBContext(DbContextOptions<SistemaRestauranteDBContext>options)
-            : base(options) 
-        
-        {    
+        public SistemaRestauranteDBContext(DbContextOptions<SistemaRestauranteDBContext>options) : base(options) 
+        {
         }
+
         public DbSet<Usuario> Usuarios { get; set; }
+        
         public DbSet<Funcionarios> Funcionarios { get; set; }
+        
         public DbSet<Pratos> Pratos { get; set; }
+        
         public DbSet<Bebidas> Bebidas { get; set;}
+        
         public DbSet<Veiculos> Veiculos { get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
