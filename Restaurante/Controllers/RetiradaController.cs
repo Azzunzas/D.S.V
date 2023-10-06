@@ -51,26 +51,31 @@ public class RetiradaController : Controller
 
     [HttpPut]
     [Route("AlterarRetirada")]
-    public async Task<ActionResult> AlterarR(Retirada retirada)
+    public async Task<ActionResult> AlterarR(int id, Retirada retirada)
     {
-        if (_dbContext == null) return NotFound();
-        if (_dbContext.Retirada is null) return NotFound();
-        var AltStatusRetirada = await _dbContext.Retirada.FindAsync(retirada.Status);
-        if (AltStatusRetirada is null) return NotFound();
-        _dbContext.Retirada.Update(retirada);
+        var AltRetirada = await _dbContext.Retirada.FindAsync(id);
+        if (AltRetirada == null) return NotFound();
+
+        AltRetirada.NomeCliente = retirada.NomeCliente;
+        AltRetirada.NumPedido = retirada.NumPedido;
+        AltRetirada.Status = retirada.Status;
+
+        _dbContext.Retirada.Update(AltRetirada);
         await _dbContext.SaveChangesAsync();
         return Ok();
     }
 
     [HttpPatch]
     [Route("Alterar/{id}")]
-    public async Task<ActionResult> MudarId(int id, int pedido)
+    public async Task<ActionResult> MudarId(int id, string status)
     {
         if (_dbContext == null) return NotFound();
         if (_dbContext.Retirada is null) return NotFound();
-        var NumPedidoRetirada = await _dbContext.Retirada.FindAsync(pedido);
+        var NumPedidoRetirada = await _dbContext.Retirada.FindAsync(id);
         if (NumPedidoRetirada == null) return NotFound();
-        NumPedidoRetirada.NumPedido = pedido;
+
+        NumPedidoRetirada.Status = status;
+        
         await _dbContext.SaveChangesAsync();
         return Ok();
     }

@@ -16,6 +16,7 @@ public class UsuarioController : Controller
     {
         _dbContext = dbContext;
     }
+
     [HttpPost]
     [Route("cadastroCliente")]
     public async Task<ActionResult> Cadastrar(Usuario usuario)
@@ -26,6 +27,7 @@ public class UsuarioController : Controller
         await _dbContext.SaveChangesAsync();
         return Created("", usuario);
     }
+
     [HttpGet]
     [Route("MostrarClientes")]
     public async Task<ActionResult<IEnumerable<Usuario>>> Listar()
@@ -34,6 +36,7 @@ public class UsuarioController : Controller
         if (_dbContext.Usuarios is null) return NotFound();
         return await _dbContext.Usuarios.ToListAsync();
     }
+
     [HttpGet]
     [Route("BuscarCliente")]
     public async Task<ActionResult<Usuario>> Buscar(int id)
@@ -44,6 +47,7 @@ public class UsuarioController : Controller
         if (UsuarioId == null) return NotFound();
         return UsuarioId;
     }
+
     [HttpPatch]
     [Route("Alterar/{id}")]
     public async Task<ActionResult> MudarEmail(int id, string email)
@@ -56,16 +60,19 @@ public class UsuarioController : Controller
         await _dbContext.SaveChangesAsync();
         return Ok();
     }
+
     [HttpDelete]
     [Route("deletar/{id}")]
     public async Task<ActionResult> ExcluirUS(int id)
     {
         if (_dbContext == null) return NotFound();
         if (_dbContext.Usuarios is null) return NotFound();
-        var ExUusuario = await _dbContext.Usuarios.FindAsync(id);
-        if (ExUusuario == null) return NotFound();
+        var ExUser = await _dbContext.Usuarios.FindAsync(id);
+        if (ExUser == null) return NotFound();
+    
+        _dbContext.Usuarios.Remove(ExUser);
+    
         await _dbContext.SaveChangesAsync();
         return Ok();
-
     }
 }

@@ -17,6 +17,7 @@ public class PratosController : Controller
     {
         _dbContext = dbContext;
     }
+
     [HttpPost]
     [Route("cadastroPratos")]
     public async Task<ActionResult> Cadastrar(Pratos pratos)
@@ -27,6 +28,7 @@ public class PratosController : Controller
         await _dbContext.SaveChangesAsync();
         return Created("", pratos);
     }
+
     [HttpGet]
     [Route("MostrarPratos")]
     public async Task<ActionResult<IEnumerable<Pratos>>> ListarP()
@@ -35,6 +37,7 @@ public class PratosController : Controller
         if (_dbContext.Pratos is null) return NotFound();
         return await _dbContext.Pratos.ToListAsync();
     }
+
     [HttpGet]
     [Route("BuscarPrato")]
     public async Task<ActionResult<Pratos>> BuscarP(int id)
@@ -45,18 +48,22 @@ public class PratosController : Controller
         if (PraId == null) return NotFound();
         return PraId;
     }
+
     [HttpPut]
     [Route("AlterarPratos")]
-    public async Task<ActionResult> AlterarP(Pratos pratos)
+    public async Task<ActionResult> AlterarP(int id, Pratos pratos)
     {
-        if (_dbContext == null) return NotFound();
-        if (_dbContext.Pratos is null) return NotFound();
-        var altprat = await _dbContext.Pratos.FindAsync(pratos.Nome);
-        if (altprat is null) return NotFound();
-        _dbContext.Pratos.Update(pratos);
+        var AltPratos = await _dbContext.Pratos.FindAsync(id);
+        if (AltPratos == null) return NotFound();
+
+        AltPratos.Nome = pratos.Nome;
+        AltPratos.Preco = pratos.Preco;
+
+        _dbContext.Pratos.Update(AltPratos);
         await _dbContext.SaveChangesAsync();
         return Ok();
     }
+
     [HttpPatch]
     [Route("Alterar/{id}")]
     public async Task<ActionResult> MudarPreco(int id, float preco)
@@ -69,14 +76,18 @@ public class PratosController : Controller
         await _dbContext.SaveChangesAsync();
         return Ok();
     }
+
     [HttpDelete]
     [Route("deletar/{id}")]
     public async Task<ActionResult> ExcluirP(int id)
     {
         if (_dbContext == null) return NotFound();
-        if (_dbContext.Usuarios is null) return NotFound();
-        var Exprato = await _dbContext.Pratos.FindAsync(id);
-        if (Exprato == null) return NotFound();
+        if (_dbContext.Pratos is null) return NotFound();
+        var ExPrato = await _dbContext.Pratos.FindAsync(id);
+        if (ExPrato == null) return NotFound();
+    
+        _dbContext.Pratos.Remove(ExPrato);
+    
         await _dbContext.SaveChangesAsync();
         return Ok();
     }

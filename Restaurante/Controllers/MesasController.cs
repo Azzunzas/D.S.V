@@ -15,6 +15,7 @@ public class MesasController : Controller
     {
         _dbContext = dbContext;
     }
+
     [HttpPost]
     [Route("CadastroMesas")]
     public async Task<ActionResult> Cadastrar(Mesas mesas)
@@ -25,6 +26,7 @@ public class MesasController : Controller
         await _dbContext.SaveChangesAsync();
         return Created("", mesas);
     }
+
     [HttpGet]
     [Route("MostrarMesas")]
     public async Task<ActionResult<IEnumerable<Mesas>>> ListarM()
@@ -33,6 +35,7 @@ public class MesasController : Controller
         if (_dbContext.Mesas is null) return NotFound();
         return await _dbContext.Mesas.ToListAsync();
     }
+
     [HttpGet]
     [Route("BuscarMesa")]
     public async Task<ActionResult<Mesas>> BuscarB(int id)
@@ -43,6 +46,7 @@ public class MesasController : Controller
         if (Nummesa == null) return NotFound();
         return Nummesa;
     }
+    
     [HttpPatch]
     [Route("Alterar/{status}")]
     public async Task<ActionResult> MudarDescricao(int id, string status)
@@ -55,14 +59,18 @@ public class MesasController : Controller
         await _dbContext.SaveChangesAsync();
         return Ok();
     }
+
     [HttpDelete]
-    [Route("deletar/{status}")]
-    public async Task<ActionResult> ExcluirP(string status)
+    [Route("deletar/{id}")]
+    public async Task<ActionResult> ExcluirP(int id)
     {
         if (_dbContext == null) return NotFound();
         if (_dbContext.Mesas is null) return NotFound();
-        var Smesas = await _dbContext.Mesas.FindAsync(status);
-        if (Smesas == null) return NotFound();
+        var ExMesa = await _dbContext.Mesas.FindAsync(id);
+        if (ExMesa == null) return NotFound();
+    
+        _dbContext.Mesas.Remove(ExMesa);
+    
         await _dbContext.SaveChangesAsync();
         return Ok();
     }

@@ -22,6 +22,5 @@ namespace Restaurante.Data
         {
             base.OnModelCreating(modelBuilder);
         }
-    }
-    
+    } 
 }

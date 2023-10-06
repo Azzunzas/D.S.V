@@ -2,17 +2,20 @@
 {
     public class Pagamentos
     {
+        public int Id { get; set; }
         public List<Dinheiro> DinheiroPagamentos { get; set; }
         public List<Cartao> CartaoPagamentos { get; set; }
 
-        public Pagamentos()
+        public Pagamentos(int id)
         {
+            Id = id;
             DinheiroPagamentos = new List<Dinheiro>();
             CartaoPagamentos = new List<Cartao>();
         }
 
         public class Dinheiro
         {
+
             public string Notas { get; set; }
 
             public Dinheiro(string notas)

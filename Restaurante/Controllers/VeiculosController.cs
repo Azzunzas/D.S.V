@@ -27,6 +27,7 @@ public class VeiculosController : Controller
         await _dbContext.SaveChangesAsync();
         return Created("", veiculos);
     }
+    
     [HttpGet]
     [Route("MostrarVeiculos")]
     public async Task<ActionResult<IEnumerable<Veiculos>>> ListarV()
@@ -35,6 +36,7 @@ public class VeiculosController : Controller
         if (_dbContext.Veiculos is null) return NotFound();
         return await _dbContext.Veiculos.ToListAsync();
     }
+
     [HttpGet]
     [Route("BuscarVeiculo")]
     public async Task<ActionResult<Veiculos>> BuscarV(int id)
@@ -45,6 +47,7 @@ public class VeiculosController : Controller
         if (VId == null) return NotFound();
         return VId;
     }
+
     [HttpPut]
     [Route("AlterarVeiculos")]
     public async Task<ActionResult> AlterarV(Veiculos veiculos)
@@ -57,18 +60,22 @@ public class VeiculosController : Controller
         await _dbContext.SaveChangesAsync();
         return Ok();
     }
+
     [HttpPatch]
     [Route("Alterar/{id}")]
-    public async Task<ActionResult> MudarSenha(int id, string password)
+    public async Task<ActionResult> MudarSenha(int id, string placa)
     {
         if (_dbContext == null) return NotFound();
-        if (_dbContext.Funcionarios is null) return NotFound();
-        var Sfunciona = await _dbContext.Funcionarios.FindAsync(id);
-        if (Sfunciona == null) return NotFound();
-        Sfunciona.Password = password;
+        if (_dbContext.Veiculos is null) return NotFound();
+        var VPlaca = await _dbContext.Veiculos.FindAsync(id);
+        if (VPlaca == null) return NotFound();
+
+        VPlaca.Placa = placa;
+
         await _dbContext.SaveChangesAsync();
         return Ok();
     }
+
     [HttpPatch]
     [Route("Alterardescricao/{id}")]
     public async Task<ActionResult> MudarDescricaoVeiculo(int id, string descricao)

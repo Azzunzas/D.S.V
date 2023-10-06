@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Restaurante.Data;
+using Restaurante.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Restaurante.Controllers;
 
@@ -15,16 +17,18 @@ public class MenuController : ControllerBase
     }
 
     [HttpGet("pratos")]
-    public IActionResult GetPratos()
+    public async Task<ActionResult<IEnumerable<Pratos>>> GetPratos()
     {
-        var pratos = _dbContext.Pratos.ToList();
-        return Ok(pratos);
+        if (_dbContext is null) return NotFound();
+        if (_dbContext.Pratos is null) return NotFound();
+        return await _dbContext.Pratos.ToListAsync();
     }
 
     [HttpGet("bebidas")]
-    public IActionResult GetBebidas()
+    public async Task<ActionResult<IEnumerable<Bebidas>>> GetBebidas()
     {
-        var bebidas = _dbContext.Bebidas.ToList();
-        return Ok(bebidas);
+        if (_dbContext is null) return NotFound();
+        if (_dbContext.Bebidas is null) return NotFound();
+        return await _dbContext.Bebidas.ToListAsync();
     }
 }

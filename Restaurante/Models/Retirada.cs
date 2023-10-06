@@ -8,10 +8,10 @@ namespace Restaurante.Models
         public string? Status { get; set; }
         public Retirada(int id, string nome, int pedido, string status)
         {
-            Id = Id;
+            Id = id;
             NomeCliente = nome;
             NumPedido = pedido;
-            Status = "Preparando";
+            Status = status;
         }
 
         public Retirada() { }

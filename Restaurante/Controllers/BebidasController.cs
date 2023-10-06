@@ -27,6 +27,7 @@ public class BebidasController : Controller
         await _dbContext.SaveChangesAsync();
         return Created("", bebidas);
     }
+    
     [HttpGet]
     [Route("MostrarBebidas")]
     public async Task<ActionResult<IEnumerable<Bebidas>>> ListarB()
@@ -35,6 +36,7 @@ public class BebidasController : Controller
         if (_dbContext.Bebidas is null) return NotFound();
         return await _dbContext.Bebidas.ToListAsync();
     }
+
     [HttpGet]
     [Route("BuscarBebida")]
     public async Task<ActionResult<Bebidas>> BuscarB(int id)
@@ -45,18 +47,23 @@ public class BebidasController : Controller
         if (Benome == null) return NotFound();
         return Benome;
     }
+
     [HttpPut]
     [Route("AlterarBebidas")]
-    public async Task<ActionResult> AlterarB(Bebidas bebidas)
+    public async Task<ActionResult> AlterarB(int id, Bebidas bebidas)
     {
-        if (_dbContext == null) return NotFound();
-        if (_dbContext.Bebidas is null) return NotFound();
-        var altbeb = await _dbContext.Bebidas.FindAsync(bebidas.Nome);
-        if (altbeb is null) return NotFound();
-        _dbContext.Bebidas.Update(bebidas);
+        var AltBebida = await _dbContext.Bebidas.FindAsync(id);
+        if (AltBebida == null) return NotFound();
+
+        AltBebida.Nome = bebidas.Nome;
+        AltBebida.Descricao = bebidas.Descricao;
+        AltBebida.Preco = bebidas.Preco;
+
+        _dbContext.Bebidas.Update(AltBebida);
         await _dbContext.SaveChangesAsync();
         return Ok();
     }
+
     [HttpPatch]
     [Route("Alterar/{id}")]
     public async Task<ActionResult> MudarDescricao(int id, string descricao)
