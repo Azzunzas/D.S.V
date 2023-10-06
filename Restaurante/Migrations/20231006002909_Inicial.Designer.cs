@@ -10,8 +10,8 @@ using Restaurante.Data;
 namespace Restaurante.Migrations
 {
     [DbContext(typeof(SistemaRestauranteDBContext))]
-    [Migration("20231005011105_Initial")]
-    partial class Initial
+    [Migration("20231006002909_Inicial")]
+    partial class Inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
