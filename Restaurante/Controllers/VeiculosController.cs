@@ -37,13 +37,13 @@ public class VeiculosController : Controller
     }
     [HttpGet]
     [Route("BuscarVeiculo")]
-    public async Task<ActionResult<Veiculos>> BuscarV(string placa)
+    public async Task<ActionResult<Veiculos>> BuscarV(int id)
     {
-        if (placa == null) return NotFound();
+        if (id == 0) return NotFound();
         if (_dbContext.Veiculos is null) return NotFound();
-        var Vplaca = await _dbContext.Veiculos.FindAsync(placa);
-        if (Vplaca == null) return NotFound();
-        return Vplaca;
+        var VId = await _dbContext.Veiculos.FindAsync(id);
+        if (VId == null) return NotFound();
+        return VId;
     }
     [HttpPut]
     [Route("AlterarVeiculos")]

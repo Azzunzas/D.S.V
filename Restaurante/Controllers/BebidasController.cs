@@ -37,11 +37,11 @@ public class BebidasController : Controller
     }
     [HttpGet]
     [Route("BuscarBebida")]
-    public async Task<ActionResult<Bebidas>> BuscarB(int Id)
+    public async Task<ActionResult<Bebidas>> BuscarB(int id)
     {
-        if (Id == null) return NotFound();
+        if (id == 0) return NotFound();
         if (_dbContext.Bebidas is null) return NotFound();
-        var Benome = await _dbContext.Bebidas.FindAsync(Id);
+        var Benome = await _dbContext.Bebidas.FindAsync(id);
         if (Benome == null) return NotFound();
         return Benome;
     }

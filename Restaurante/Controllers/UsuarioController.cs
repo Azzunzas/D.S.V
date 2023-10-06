@@ -36,13 +36,13 @@ public class UsuarioController : Controller
     }
     [HttpGet]
     [Route("BuscarCliente")]
-    public async Task<ActionResult<Usuario>> Buscar(int login)
+    public async Task<ActionResult<Usuario>> Buscar(int id)
     {
-        if (login == 0) return NotFound();
+        if (id == 0) return NotFound();
         if (_dbContext.Usuarios is null) return NotFound();
-        var Usuariolog = await _dbContext.Usuarios.FindAsync(login);
-        if (Usuariolog == null) return NotFound();
-        return Usuariolog;
+        var UsuarioId = await _dbContext.Usuarios.FindAsync(id);
+        if (UsuarioId == null) return NotFound();
+        return UsuarioId;
     }
     [HttpPatch]
     [Route("Alterar/{id}")]

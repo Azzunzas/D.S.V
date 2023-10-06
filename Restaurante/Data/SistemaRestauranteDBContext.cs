@@ -15,6 +15,8 @@ namespace Restaurante.Data
         public DbSet<Pratos> Pratos { get; set; }
         public DbSet<Bebidas> Bebidas { get; set;}
         public DbSet<Veiculos> Veiculos { get; set;}
+        public DbSet<Mesas> Mesas { get; set;}
+        public DbSet<Retirada> Retirada { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -37,13 +37,13 @@ public class PratosController : Controller
     }
     [HttpGet]
     [Route("BuscarPrato")]
-    public async Task<ActionResult<Pratos>> BuscarP(string nome)
+    public async Task<ActionResult<Pratos>> BuscarP(int id)
     {
-        if (nome == null) return NotFound();
+        if (id == 0) return NotFound();
         if (_dbContext.Pratos is null) return NotFound();
-        var Pranome = await _dbContext.Pratos.FindAsync(nome);
-        if (Pranome == null) return NotFound();
-        return Pranome;
+        var PraId = await _dbContext.Pratos.FindAsync(id);
+        if (PraId == null) return NotFound();
+        return PraId;
     }
     [HttpPut]
     [Route("AlterarPratos")]

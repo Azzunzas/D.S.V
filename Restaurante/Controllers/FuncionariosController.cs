@@ -36,13 +36,13 @@ public class FuncionariosController : Controller
     }
     [HttpGet]
     [Route("BuscarFuncionario")]
-    public async Task<ActionResult<Funcionarios>> BuscarF(int login)
+    public async Task<ActionResult<Funcionarios>> BuscarF(int id)
     {
-        if (login == 0) return NotFound();
+        if (id == 0) return NotFound();
         if (_dbContext.Funcionarios is null) return NotFound();
-        var Funcilog = await _dbContext.Funcionarios.FindAsync(login);
-        if (Funcilog == null) return NotFound();
-        return Funcilog;
+        var FunciId = await _dbContext.Funcionarios.FindAsync(id);
+        if (FunciId == null) return NotFound();
+        return FunciId;
     }
     [HttpPatch]
     [Route("Alterar/{id}")]
