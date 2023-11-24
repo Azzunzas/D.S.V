@@ -13,4 +13,6 @@ por motivos de ser muito grande em tamanho e o github nao suportar fazer o commi
 
 segue o link abaixo:
 
-link para aplicacao: https://drive.google.com/file/d/1ekrODW1Ux-is9nhWy9bKxBBwULdeDeDe/view?usp=drive_link
+link para aplicacao compactada: https://drive.google.com/file/d/1ekrODW1Ux-is9nhWy9bKxBBwULdeDeDe/view?usp=drive_link
+
+link para aplicacao nao compactada: https://drive.google.com/drive/folders/15Pc1DxZF-NY4BiZBRW06hvuKdjqEZFTf?usp=drive_link
